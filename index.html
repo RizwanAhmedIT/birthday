@@ -226,26 +226,38 @@
       <span class="wish__rule" id="wRule"></span>
       <p class="wish__sub" id="wSub">here&rsquo;s to a year that blooms with happiness &amp; success</p>
 
-      <!-- Interactive Letter Envelope Button -->
-      <div class="wish__envelopeWrap" id="envelopeWrap">
+      <!-- Interactive Action Buttons: Birthday Letter & Photo Album -->
+      <div class="wish__actionsWrap" id="actionsWrap">
         <button class="waxEnvelope" id="waxEnvelope" type="button" aria-label="Open your birthday letter">
           <div class="waxEnvelope__icon">💌</div>
           <div class="waxEnvelope__info">
-            <span class="waxEnvelope__title">Open Your Birthday Note</span>
+            <span class="waxEnvelope__title">Open Birthday Note</span>
             <span class="waxEnvelope__hint">Tap to unfold &amp; make a wish</span>
           </div>
           <div class="waxEnvelope__seal" id="envSeal">✨</div>
         </button>
+
+        <button class="memoriesBtn" id="memoriesBtn" type="button" aria-label="View photo memories scrapbook">
+          <div class="memoriesBtn__icon">📸</div>
+          <div class="memoriesBtn__info">
+            <span class="memoriesBtn__title">Cherished Memories</span>
+            <span class="memoriesBtn__hint">17 moments &bull; View album</span>
+          </div>
+          <div class="memoriesBtn__badge">17 💖</div>
+        </button>
+
+        <!-- Watch Again Button integrated inside toolbar so it never collides -->
+        <button class="replay" id="replay" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="14" height="14">
+            <path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor" />
+          </svg>
+          <span>Watch Again</span>
+        </button>
       </div>
     </div>
 
-    <!-- Play the film again button -->
-    <button class="replay" id="replay" type="button" hidden>
-      <svg viewBox="0 0 24 24" aria-hidden="true" width="15" height="15">
-        <path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor" />
-      </svg>
-      Watch Again
-    </button>
+    <!-- Floating Keepsake Polaroids in Act 4 -->
+    <div class="floatingPolaroids" id="floatingPolaroids" aria-label="Photo keepsakes"></div>
 
     <!-- Cinematic lens: vignette + grain -->
     <div class="grade" aria-hidden="true">
@@ -271,6 +283,12 @@
         
         <p class="parchmentCard__signoff" id="letterSignoff">Cheers to you &amp; your brightest year yet! 🥂✨</p>
 
+        <!-- Quick link to photo memories album -->
+        <button class="letterMemoriesBtn" id="letterMemoriesBtn" type="button">
+          <span class="letterMemoriesBtn__icon">📸</span>
+          <span class="letterMemoriesBtn__text">Browse All 17 Moments &amp; Memories</span>
+        </button>
+
         <!-- Interactive Candle & Birthday Cake Section -->
         <div class="wishCakeSection">
           <div class="cakeVisual" id="cakeVisual">
@@ -290,6 +308,53 @@
           
           <p class="wishCelebrationNote" id="wishCelebrationNote">May all your sweetest wishes come true! ✨</p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Polaroid Memory Scrapbook Modal Dialog -->
+  <div class="memoriesModal" id="memoriesModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="polaroidTitle">
+    <div class="memoriesModal__backdrop" id="memoriesBackdrop"></div>
+    <div class="memoriesModal__content">
+      <button class="modalCloseBtn memoriesModal__close" id="memoriesCloseBtn" type="button" aria-label="Close memories album">&times;</button>
+      
+      <!-- Top controls & counter bar -->
+      <div class="memoriesHeader">
+        <div class="memoriesHeader__badge">
+          <span class="memoriesHeader__tag" id="polaroidTag">Favorite Moments</span>
+          <span class="memoriesHeader__count" id="polaroidCount">1 / 17</span>
+        </div>
+        <button class="memoriesPlayBtn" id="memPlayBtn" type="button" aria-label="Toggle auto slideshow">
+          <span>▶</span><span>Slideshow</span>
+        </button>
+      </div>
+
+      <!-- Main Polaroid Showcase Frame -->
+      <div class="polaroidShowcase">
+        <button class="memNavBtn memNavBtn--prev" id="memPrevBtn" type="button" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+
+        <div class="polaroidCard" id="polaroidCard">
+          <div class="polaroidCard__tape" aria-hidden="true"></div>
+          <div class="polaroidCard__photo">
+            <img id="polaroidImg" src="" alt="Birthday Memory" />
+            <div class="polaroidCard__sheen" aria-hidden="true"></div>
+          </div>
+          <div class="polaroidCard__footer">
+            <h3 class="polaroidCard__title" id="polaroidTitle">Memory Title</h3>
+            <p class="polaroidCard__caption" id="polaroidCaption">Memory Caption</p>
+          </div>
+        </div>
+
+        <button class="memNavBtn memNavBtn--next" id="memNextBtn" type="button" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <!-- Bottom Filmstrip Thumbnails -->
+      <div class="memoriesFilmstripWrap">
+        <div class="memoriesFilmstrip" id="memoriesFilmstrip"></div>
       </div>
     </div>
   </div>

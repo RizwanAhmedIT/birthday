@@ -400,6 +400,46 @@ class BirthdayAudioEngine {
       });
     }, 280);
   }
+
+  /* Tactile Polaroid photo flip */
+  playPhotoFlip() {
+    this.init();
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    
+    // Crisp shutter / card snap click
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(880, now);
+    osc.frequency.exponentialRampToValueAtTime(220, now + 0.08);
+    gain.gain.setValueAtTime(0.18, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+    osc.connect(gain);
+    gain.connect(this.sfxGain);
+    osc.start(now);
+    osc.stop(now + 0.1);
+  }
+
+  /* Album open whoosh and sparkle */
+  playAlbumOpen() {
+    this.init();
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+    
+    [587.33, 783.99, 1174.66].forEach((f, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(f, now + idx * 0.05);
+      gain.gain.setValueAtTime(0.14, now + idx * 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.8);
+      osc.connect(gain);
+      gain.connect(this.sfxGain);
+      osc.start(now + idx * 0.05);
+      osc.stop(now + idx * 0.05 + 0.85);
+    });
+  }
 }
 
 export const sound = new BirthdayAudioEngine();

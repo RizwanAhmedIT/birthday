@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { sound } from './audio.js';
 import { StardustTrail, CelebrationFX } from './celebration.js';
 import { PALETTES, CURRENT_THEME } from './palettes.js';
+import { initMemories, showFloatingPolaroids, stopFloatingPolaroids } from './memories.js';
 
 /* the pen-stroke plugin: a `drawn` 0..1 property for the underline */
 gsap.registerPlugin({
@@ -193,12 +194,12 @@ function shade(hex, amt){
 
 const T = {
   trunkStart: 0.10,
-  branchSpan: 1.80,
-  bloomT0:    1.25,
-  bloomSpan:  2.00,
-  petalT0:    2.45,
-  noteStart:  0.45,
-  done:       4.60,
+  branchSpan: 1.40,
+  bloomT0:    0.85,
+  bloomSpan:  1.50,
+  petalT0:    1.80,
+  noteStart:  1.50,
+  done:       3.60,
 };
 
 const SS = 168;
@@ -373,13 +374,13 @@ function buildScene(){
   groundGrad.addColorStop(0.35, 'rgba(60,25,8,0.3)');
   groundGrad.addColorStop(1, 'rgba(40,15,4,0.7)');
 
-  // Main trunk: reaches directly to the heart bottom tip and into lower canopy
-  growBranch(cx, groundY, cx, cy + ry * 0.42, 0, 0.1, 0, W * 0.024);
+  // Main trunk: reaches directly to the heart bottom tip and smoothly branches out
+  growBranch(cx, groundY, cx, cy + ry * 0.42, 0, 0.1, 0, W * (wide ? 0.024 : 0.032));
 
   // Densely populate the heart with lush, large petals
-  const N = Math.round(clamp(W * H * 0.00078, 520, 880));
+  const N = Math.round(clamp(W * H * (wide ? 0.0013 : 0.0018), 640, 1250));
   let placed = 0, guard = 0;
-  while (placed < N && guard++ < 30000){
+  while (placed < N && guard++ < 35000){
     const ang = Math.random() * Math.PI * 2;
     const rad = Math.sqrt(Math.random());
     const nx = Math.cos(ang) * rad, ny = Math.sin(ang) * rad;
@@ -387,7 +388,7 @@ function buildScene(){
     const x = cx + nx * rx, y = cy + ny * ry;
     const dEdge = Math.hypot(nx, ny);
     const soft = Math.random() < (dEdge > 0.78 ? 0.42 : 0.18);
-    const box = rand(wide ? 26 : 22, wide ? 56 : 46) * (soft ? 1.22 : 1);
+    const box = rand(wide ? 28 : 22, wide ? 58 : 46) * (soft ? 1.25 : 1);
     const idx = (Math.random() * BLOSSOM.length) | 0;
     const t0 = T.bloomT0 + (1 - dEdge) * (T.bloomSpan * 0.45) + rand(0, T.bloomSpan * 0.55);
     hearts.push({ x, y, box, idx, soft, t0, rot: rand(-0.4, 0.4), sway: rand(0, 6.28) });
@@ -413,7 +414,7 @@ function growBranch(x1, y1, x2, y2, depth, t0, angle, width){
   
   if (depth >= 4) return;
   
-  const count = depth === 0 ? 2 : Math.random() < 0.3 ? 1 : 2;
+  const count = depth <= 1 ? 2 : Math.random() < 0.25 ? 1 : 2;
   const spread = 0.52 - depth * 0.08;
   
   for (let k = 0; k < count; k++){
@@ -426,7 +427,7 @@ function growBranch(x1, y1, x2, y2, depth, t0, angle, width){
     const ny = p.y - Math.cos(newAng) * len;
 
     // Check if branch stays safely within upper canopy
-    if (ny < cy - ry * 0.72) continue;
+    if (ny < cy - ry * 0.85) continue;
     
     growBranch(p.x, p.y, nx, ny, depth + 1, t0 + dur * rand(0.4, 0.75), newAng, w1);
   }
@@ -551,7 +552,14 @@ function drawRested(){
   for (const r of rested) drawSprite(SPR.crisp[r.idx], r.x, r.y, r.box, r.rot, r.a);
 }
 
-function showWish(on){ wishEl.classList.toggle('is-in', on); }
+let polaroidsShown = false;
+function showWish(on){
+  wishEl.classList.toggle('is-in', on);
+  if (on && !polaroidsShown) {
+    polaroidsShown = true;
+    showFloatingPolaroids();
+  }
+}
 
 let treeStartT = 0, treeLastT = 0, treeRAF = 0, lastPetal = 0, replayArmed = false;
 window.bdayDone = false;
@@ -913,6 +921,19 @@ hint.addEventListener('click', () => {
   if (!played) autoFire();
 });
 
+// Mobile friendly: tapping archery or anywhere on Act 1 screen triggers autoFire smoothly
+archery.addEventListener('click', () => {
+  if (!played) autoFire();
+});
+
+window.addEventListener('click', (e) => {
+  if (played) return;
+  if (e.target.closest('#soundToggle') || e.target.closest('#paletteToggle')) return;
+  autoFire();
+});
+
+window.autoFire = autoFire;
+
 /* boot Act 1 */
 function enter(){
   gsap.set(hero, { autoAlpha: 1 });
@@ -939,6 +960,10 @@ function armReplay(){
 
 function resetAll(){
   treeStop();
+  polaroidsShown = false;
+  stopFloatingPolaroids();
+  const floatContainer = document.getElementById('floatingPolaroids');
+  if (floatContainer) { floatContainer.innerHTML = ''; floatContainer.classList.remove('is-visible'); }
   showWish(false);
   window.bdayDone = false; replayArmed = false;
   replay.classList.remove('is-shown'); replay.hidden = true;
@@ -1014,15 +1039,24 @@ function resize(){
   buildSprites();
   buildScene();
   if (reduceMotion){ drawFinal(); return; }
+  if (window.bdayDone){
+    drawFinal();
+    return;
+  }
   if (played && filmTL){
     const at = filmTL.time(); const active = filmTL.isActive();
-    filmTL = buildFilm(shotGeom());
-    filmTL.pause(at);
-    if (active) filmTL.play(at);
+    if (active) {
+      filmTL = buildFilm(shotGeom());
+      filmTL.play(at);
+    } else {
+      drawFinal();
+    }
   } else {
     refreshRig(); setDraw(0);
   }
 }
+
+window.drawFinal = drawFinal;
 let resizeRAF = 0;
 window.addEventListener('resize', () => {
   if (resizeRAF) return;
@@ -1031,6 +1065,9 @@ window.addEventListener('resize', () => {
 
 // Initialize with configured palette (default: 'friend')
 applyPalette(CURRENT_THEME);
+
+// Initialize interactive memories album & keepsakes
+initMemories();
 
 resize();
 

@@ -537,11 +537,14 @@ body{
 @keyframes twk{ 0%,100%{ opacity:0; transform:scale(.5) rotate(-12deg); } 45%{ opacity:1; transform:scale(1.05) rotate(16deg); } }
 
 /* Envelope Button */
+.wish__actionsWrap,
 .wish__envelopeWrap{
   margin-top:clamp(14px, 2.6vh, 26px);
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
   opacity:0; transform:translateY(16px);
   transition:all 0.8s var(--ease-out) 1.8s;
 }
+.wish.is-in .wish__actionsWrap,
 .wish.is-in .wish__envelopeWrap{ opacity:1; transform:translateY(0); }
 
 .waxEnvelope{
@@ -557,8 +560,8 @@ body{
 }
 .waxEnvelope:hover{
   transform:translateY(-3px) scale(1.03);
-  box-shadow:0 18px 36px -8px rgba(245, 158, 11, 0.32);
-  border-color:rgba(245, 158, 11, 0.6);
+  box-shadow:0 18px 36px -8px rgba(14, 165, 233, 0.32);
+  border-color:rgba(14, 165, 233, 0.6);
 }
 .waxEnvelope:active{ transform:scale(0.97); }
 
@@ -576,23 +579,111 @@ body{
 }
 .waxEnvelope__seal{
   width:32px; height:32px; border-radius:50%;
-  background:radial-gradient(circle at 35% 35%, #fbbf24, #b45309);
-  border:1px solid rgba(255, 240, 180, 0.8);
-  box-shadow:0 4px 10px rgba(180, 83, 9, 0.4), 0 2px 4px rgba(255,255,255,0.4) inset;
+  background:radial-gradient(circle at 35% 35%, #38bdf8, #0284c7);
+  border:1px solid rgba(255, 255, 255, 0.8);
+  box-shadow:0 4px 10px rgba(2, 132, 199, 0.4), 0 2px 4px rgba(255,255,255,0.4) inset;
   display:flex; justify-content:center; align-items:center;
   color:#fff; font-size:14px;
   animation:sealPulse 2.5s ease-in-out infinite;
 }
-@keyframes sealPulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.1); box-shadow:0 4px 16px rgba(245, 158, 11, 0.6); } }
+@keyframes sealPulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.1); box-shadow:0 4px 16px rgba(14, 165, 233, 0.6); } }
 
-/* Replay Button */
+/* Memories Polaroid Scrapbook Button */
+.memoriesBtn{
+  display:inline-flex; align-items:center; gap:14px;
+  padding:10px 18px 10px 14px;
+  border-radius:18px;
+  background:var(--glass-bg);
+  border:1.5px solid var(--glass-border);
+  box-shadow:var(--glass-shadow);
+  backdrop-filter:blur(10px);
+  cursor:pointer;
+  transition:all 0.3s var(--ease-bounce);
+}
+.memoriesBtn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 18px 36px -8px rgba(14, 165, 233, 0.32);
+  border-color:rgba(14, 165, 233, 0.6);
+}
+.memoriesBtn:active{ transform:scale(0.97); }
+.memoriesBtn__icon{ font-size:26px; }
+.memoriesBtn__info{ display:flex; flex-direction:column; text-align:left; }
+.memoriesBtn__title{
+  font-family:'Outfit', sans-serif;
+  font-weight:600; font-size:13.5px;
+  color:var(--ink);
+}
+.memoriesBtn__hint{
+  font-family:'Cormorant Garamond', Georgia, serif;
+  font-style:italic; font-size:13px;
+  color:var(--ink-soft);
+}
+.memoriesBtn__badge{
+  padding:4px 9px; border-radius:999px;
+  background:linear-gradient(135deg, #0284c7, #38bdf8);
+  color:#ffffff; font-family:'Outfit', sans-serif;
+  font-size:11px; font-weight:700;
+  letter-spacing:0.4px;
+  box-shadow:0 2px 8px rgba(2, 132, 199, 0.4);
+  animation:sealPulse 2.5s ease-in-out infinite 0.5s;
+}
+
+/* Floating Keepsake Polaroids in Act 4 */
+.floatingPolaroids{
+  position:absolute; inset:0;
+  pointer-events:none; z-index:25;
+  opacity:0; transition:opacity 1.2s ease 0.6s;
+}
+.floatingPolaroids.is-visible{
+  opacity:1;
+}
+.floatingPolaroid{
+  position:absolute;
+  pointer-events:auto;
+  cursor:pointer;
+  background:#ffffff;
+  padding:7px 7px 18px 7px;
+  border-radius:4px;
+  box-shadow:0 16px 36px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.12);
+  transform:rotate(var(--rot, 0deg));
+  transition:transform 0.4s var(--ease-bounce), box-shadow 0.4s ease;
+  animation:floatSlow 5.5s ease-in-out infinite alternate;
+}
+.floatingPolaroid:hover{
+  transform:scale(1.15) translateY(-10px) rotate(calc(var(--rot, 0deg) * 0.4)) !important;
+  box-shadow:0 24px 50px rgba(0,0,0,0.28), 0 4px 14px rgba(0,0,0,0.16);
+  z-index:35;
+}
+.floatingPolaroid__pin{
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  font-size:17px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.floatingPolaroid__frame{
+  display:flex; flex-direction:column; align-items:center;
+}
+.floatingPolaroid__img{
+  width:88px; height:104px; object-fit:cover; border-radius:2px;
+  background:#f1f5f9; display:block;
+}
+.floatingPolaroid__label{
+  font-family:'Cormorant Garamond', Georgia, serif;
+  font-style:italic; font-size:11.5px; font-weight:600;
+  color:#475569; margin-top:5px; text-align:center;
+  max-width:88px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+@keyframes floatSlow{
+  0%{ transform:translateY(0px) rotate(var(--rot, 0deg)); }
+  100%{ transform:translateY(-14px) rotate(calc(var(--rot, 0deg) + 2deg)); }
+}
+
+/* Replay Button — nested in actions toolbar */
 .replay{
-  position:absolute; right:24px; bottom:22px; z-index:40;
+  position:relative;
   display:inline-flex; align-items:center; gap:8px;
   padding:10px 18px; border-radius:999px;
   font:600 13px/1 "Cormorant Garamond", Georgia, serif; letter-spacing:.12em; text-transform:uppercase;
   color:var(--ink); background:var(--glass-bg);
-  border:1px solid var(--glass-border);
+  border:1.5px solid var(--glass-border);
   box-shadow:var(--glass-shadow);
   backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
   cursor:pointer; opacity:0; transform:translateY(10px);
@@ -602,7 +693,7 @@ body{
 .replay:hover{
   background:#ffffff; color:var(--ink-soft);
   transform:translateY(-2px);
-  box-shadow:0 12px 28px -6px rgba(245, 158, 11, 0.3);
+  box-shadow:0 12px 28px -6px rgba(14, 165, 233, 0.3);
 }
 
 /* ============================================================
@@ -627,26 +718,31 @@ body{
 
 .letterModal__content{
   position:relative; z-index:2;
-  width:100%; max-width:540px;
+  width:100%; max-width:520px;
   background:linear-gradient(135deg, #fffdf8 0%, #fdf8ee 100%);
   border-radius:24px;
   border:1.5px solid var(--glass-border);
   box-shadow:0 24px 60px -12px rgba(69, 26, 3, 0.35), 0 2px 10px rgba(255,255,255,0.9) inset;
-  padding:34px 38px;
+  padding:26px 32px;
   transform:scale(0.92) translateY(12px);
   transition:transform 0.4s var(--ease-bounce);
-  max-height:90vh; overflow-y:auto;
+  max-height:92vh; overflow-y:auto;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.letterModal__content::-webkit-scrollbar{
+  display:none;
 }
 .letterModal.is-open .letterModal__content{
   transform:scale(1) translateY(0);
 }
 
 .modalCloseBtn{
-  position:absolute; top:18px; right:20px;
-  width:36px; height:36px; border-radius:50%;
+  position:absolute; top:16px; right:18px;
+  width:34px; height:34px; border-radius:50%;
   background:rgba(245, 158, 11, 0.15);
   border:none; color:var(--ink);
-  font-size:22px; line-height:1;
+  font-size:20px; line-height:1;
   display:flex; justify-content:center; align-items:center;
   cursor:pointer;
   transition:all 0.2s ease;
@@ -658,67 +754,85 @@ body{
 
 .parchmentCard{ text-align:center; position:relative; }
 .parchmentCard__stamp{
-  width:42px; height:42px; border-radius:50%;
-  margin:0 auto 12px;
+  width:36px; height:36px; border-radius:50%;
+  margin:0 auto 8px;
   background:radial-gradient(circle at 35% 35%, #fbbf24, #b45309);
   color:#fff; display:flex; justify-content:center; align-items:center;
-  font-size:18px; box-shadow:0 6px 16px rgba(180, 83, 9, 0.35);
+  font-size:16px; box-shadow:0 4px 12px rgba(180, 83, 9, 0.3);
 }
 .parchmentCard__date{
   font-family:'Cormorant Garamond', Georgia, serif;
-  font-style:italic; font-size:14px;
+  font-style:italic; font-size:13px;
   letter-spacing:0.08em; text-transform:uppercase;
-  color:var(--ink-soft); margin-bottom:8px;
+  color:var(--ink-soft); margin-bottom:6px;
 }
 .parchmentCard__title{
   font-family:'Fraunces', "Playfair Display", Georgia, serif;
-  font-size:38px; font-weight:800;
-  color:var(--ink); line-height:1.15; margin-bottom:18px;
+  font-size:32px; font-weight:800;
+  color:var(--ink); line-height:1.15; margin-bottom:12px;
 }
 .parchmentCard__body{
   font-family:'Cormorant Garamond', Georgia, serif;
-  font-size:19.5px; line-height:1.65;
-  color:var(--ink); margin-bottom:20px;
+  font-size:17.5px; line-height:1.55;
+  color:var(--ink); margin-bottom:14px;
   white-space:pre-wrap;
 }
 .parchmentCard__signoff{
   font-family:'Cormorant Garamond', Georgia, serif;
   font-style:italic; font-weight:600;
-  font-size:18px; color:var(--ink-soft); margin-bottom:28px;
+  font-size:16.5px; color:var(--ink-soft); margin-bottom:14px;
 }
+
+.letterMemoriesBtn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  margin:0 auto 14px auto; padding:8px 18px;
+  border-radius:999px; border:1px solid rgba(2, 132, 199, 0.35);
+  background:linear-gradient(135deg, rgba(224, 242, 254, 0.9), rgba(186, 230, 253, 0.95));
+  color:#0369a1; font-family:'Outfit', sans-serif;
+  font-size:12.5px; font-weight:600; cursor:pointer;
+  box-shadow:0 4px 12px rgba(2, 132, 199, 0.14);
+  transition:all 0.25s var(--ease-bounce);
+}
+.letterMemoriesBtn:hover{
+  transform:translateY(-2px) scale(1.03);
+  background:linear-gradient(135deg, #0284c7, #0ea5e9);
+  color:#ffffff;
+  box-shadow:0 8px 22px rgba(2, 132, 199, 0.35);
+}
+.letterMemoriesBtn:active{ transform:scale(0.97); }
 
 /* Interactive Birthday Cake & Wish Candle */
 .wishCakeSection{
-  margin-top:20px; padding-top:22px;
-  border-top:1px dashed rgba(245, 158, 11, 0.4);
+  margin-top:8px; padding-top:14px;
+  border-top:1px dashed rgba(245, 158, 11, 0.35);
   display:flex; flex-direction:column; align-items:center;
 }
 .cakeVisual{
-  position:relative; width:90px; height:80px;
-  margin-bottom:18px; display:flex; justify-content:center;
+  position:relative; width:76px; height:68px;
+  margin-bottom:12px; display:flex; justify-content:center;
 }
 .cakeBase{
-  position:absolute; bottom:0; width:76px; height:42px;
+  position:absolute; bottom:0; width:76px; height:38px;
   background:linear-gradient(180deg, #fde047 0%, #f59e0b 100%);
-  border-radius:12px 12px 6px 6px;
-  box-shadow:0 8px 18px rgba(180, 83, 9, 0.25);
+  border-radius:10px 10px 6px 6px;
+  box-shadow:0 6px 14px rgba(180, 83, 9, 0.22);
 }
 .cakeIcing{
-  position:absolute; top:-6px; left:-2px; right:-2px; height:16px;
-  background:#fff; border-radius:10px;
-  box-shadow:0 3px 6px rgba(0,0,0,0.06);
+  position:absolute; top:-5px; left:-2px; right:-2px; height:14px;
+  background:#fff; border-radius:8px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.06);
 }
 .candleStick{
-  position:absolute; bottom:38px; width:8px; height:32px;
-  background:repeating-linear-gradient(45deg, #38bdf8, #38bdf8 4px, #0284c7 4px, #0284c7 8px);
-  border-radius:4px;
+  position:absolute; bottom:34px; width:7px; height:28px;
+  background:repeating-linear-gradient(45deg, #38bdf8, #38bdf8 3px, #0284c7 3px, #0284c7 6px);
+  border-radius:3px;
 }
 .candleFlame{
-  position:absolute; top:-18px; left:50%; transform:translateX(-50%);
-  width:12px; height:18px;
+  position:absolute; top:-16px; left:50%; transform:translateX(-50%);
+  width:11px; height:16px;
   background:radial-gradient(ellipse at 50% 80%, #fff, #fde047 40%, #ea580c 85%);
   border-radius:50% 50% 35% 35%;
-  filter:drop-shadow(0 0 10px #f59e0b) drop-shadow(0 0 18px #ea580c);
+  filter:drop-shadow(0 0 8px #f59e0b) drop-shadow(0 0 14px #ea580c);
   animation:flameFlicker 1.8s ease-in-out infinite alternate;
 }
 .candleFlame.is-out{ display:none; }
@@ -769,6 +883,159 @@ body{
 }
 .wishCelebrationNote.is-shown{ opacity:1; transform:translateY(0); }
 
+/* ============================================================
+   POLAROID MEMORY SCRAPBOOK MODAL
+   ============================================================ */
+.memoriesModal{
+  position:fixed; inset:0; z-index:250;
+  display:flex; justify-content:center; align-items:center;
+  opacity:0; pointer-events:none;
+  transition:opacity 0.4s ease;
+}
+.memoriesModal.is-open{
+  opacity:1; pointer-events:auto;
+}
+.memoriesModal__backdrop{
+  position:absolute; inset:0;
+  background:rgba(8, 26, 43, 0.78);
+  backdrop-filter:blur(24px) saturate(160%);
+  -webkit-backdrop-filter:blur(24px) saturate(160%);
+}
+.memoriesModal__content{
+  position:relative; z-index:2;
+  width:92%; max-width:680px; max-height:94vh;
+  display:flex; flex-direction:column; align-items:center;
+  animation:modalPop 0.45s var(--ease-bounce);
+}
+.memoriesModal__close{
+  top:-16px; right:-10px;
+}
+.memoriesHeader{
+  width:100%; display:flex; justify-content:space-between; align-items:center;
+  margin-bottom:12px; padding:0 8px;
+}
+.memoriesHeader__badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.24);
+  padding:6px 14px; border-radius:999px;
+  color:#e0f2fe; font-family:'Outfit', sans-serif; font-size:12.5px;
+  backdrop-filter:blur(10px);
+}
+.memoriesHeader__tag{ font-weight:600; color:#38bdf8; }
+.memoriesHeader__count{ font-weight:400; opacity:0.85; }
+.memoriesPlayBtn{
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.24);
+  padding:6px 14px; border-radius:999px;
+  color:#ffffff; font-family:'Outfit', sans-serif; font-size:12px; font-weight:600;
+  cursor:pointer; transition:all 0.2s ease;
+  backdrop-filter:blur(10px);
+}
+.memoriesPlayBtn:hover{
+  background:#ffffff; color:#0369a1;
+}
+.memoriesPlayBtn.is-playing{
+  background:#38bdf8; color:#082f49;
+}
+.polaroidShowcase{
+  width:100%; display:flex; align-items:center; justify-content:center; gap:16px;
+  position:relative;
+}
+.memNavBtn{
+  width:46px; height:46px; border-radius:50%;
+  background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.3);
+  color:#ffffff; display:flex; justify-content:center; align-items:center;
+  cursor:pointer; backdrop-filter:blur(8px);
+  transition:all 0.25s var(--ease-bounce);
+  flex-shrink:0;
+}
+.memNavBtn:hover{
+  background:#ffffff; color:#0369a1; transform:scale(1.12);
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+}
+.memNavBtn:active{ transform:scale(0.94); }
+.polaroidCard{
+  background:#ffffff;
+  padding:14px 14px 22px 14px;
+  border-radius:6px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.2);
+  width:100%; max-width:440px; position:relative;
+  transform:rotate(-0.8deg);
+  transition:transform 0.4s var(--ease-bounce);
+}
+.polaroidCard.is-flipping{
+  animation:cardFlip 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+@keyframes cardFlip{
+  0%{ transform:scale(0.96) rotate(-2.5deg); opacity:0.6; }
+  50%{ transform:scale(1.02) rotate(1deg); }
+  100%{ transform:scale(1) rotate(-0.8deg); opacity:1; }
+}
+.polaroidCard__tape{
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  width:90px; height:24px;
+  background:rgba(254, 240, 138, 0.7);
+  box-shadow:0 2px 6px rgba(0,0,0,0.12);
+  transform:translateX(-50%) rotate(1.2deg);
+  backdrop-filter:blur(2px);
+}
+.polaroidCard__photo{
+  width:100%; height:370px; max-height:46vh;
+  border-radius:3px; overflow:hidden;
+  background:#081b29; position:relative;
+}
+.polaroidCard__photo img{
+  width:100%; height:100%; object-fit:cover; object-position:center 20%;
+  transition:opacity 0.3s ease;
+}
+.polaroidCard__sheen{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+}
+.polaroidCard__footer{
+  padding-top:14px; text-align:center;
+}
+.polaroidCard__title{
+  font-family:'Fraunces', serif;
+  font-size:21px; font-weight:700; color:#0f172a;
+  letter-spacing:-0.2px;
+}
+.polaroidCard__caption{
+  font-family:'Cormorant Garamond', Georgia, serif;
+  font-style:italic; font-size:16px; color:#475569;
+  margin-top:4px; line-height:1.35;
+}
+.memoriesFilmstripWrap{
+  width:100%; margin-top:14px;
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16);
+  border-radius:14px; padding:6px 8px;
+  backdrop-filter:blur(10px);
+}
+.memoriesFilmstrip{
+  display:flex; gap:9px; overflow-x:auto; padding:4px 2px;
+  scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.4) transparent;
+}
+.filmThumb{
+  width:50px; height:60px; flex-shrink:0; border-radius:4px;
+  overflow:hidden; border:2px solid transparent; background:#000;
+  cursor:pointer; opacity:0.6; position:relative;
+  transition:all 0.25s ease; padding:0;
+}
+.filmThumb img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.filmThumb__num{
+  position:absolute; bottom:2px; right:3px;
+  font-size:9px; font-weight:700; color:#ffffff;
+  background:rgba(0,0,0,0.6); padding:1px 4px; border-radius:3px;
+}
+.filmThumb:hover{ opacity:0.95; transform:scale(1.06); }
+.filmThumb.is-active{
+  opacity:1; border-color:#38bdf8; transform:scale(1.08);
+  box-shadow:0 4px 14px rgba(56, 189, 248, 0.6);
+}
+
 /* Toast feedback */
 .toast{
   position:fixed; bottom:28px; left:50%;
@@ -804,10 +1071,66 @@ body{
   .topBar{ left:12px; right:12px; top:10px; }
   .topBar__badge{ display:none; }
   .topBtn{ padding:7px 12px; font-size:11.5px; }
-  .wish{ max-width:85%; left:7%; bottom:7%; }
-  .parchmentCard__title{ font-size:32px; }
-  .parchmentCard__body{ font-size:16.5px; }
-  .letterModal__content{ padding:24px 20px; }
+  .wish{
+    max-width:92%; left:4%; bottom:2.5%;
+    padding:16px 14px 14px;
+    border-radius:20px;
+    background:rgba(255, 253, 248, 0.88);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255, 255, 255, 0.95);
+    box-shadow:0 14px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(255,255,255,0.8) inset;
+  }
+  .wish::before{ display:none; }
+  .wish__hero{ font-size:clamp(30px, 8.2vw, 46px); }
+  .wish.is-in .wish__rule{ transition-delay:0.25s; }
+  .wish.is-in .wish__sub{ transition-delay:0.4s; }
+  .wish.is-in .wish__actionsWrap,
+  .wish.is-in .wish__envelopeWrap{ transition-delay:0.55s; }
+  .wish__actionsWrap{ gap:8px; margin-top:12px; }
+  .waxEnvelope, .memoriesBtn{ padding:8px 12px; border-radius:14px; flex:1 1 130px; }
+  .waxEnvelope__icon, .memoriesBtn__icon{ font-size:20px; }
+  .waxEnvelope__title, .memoriesBtn__title{ font-size:12px; }
+  .waxEnvelope__hint, .memoriesBtn__hint{ font-size:11px; }
+  .waxEnvelope__seal{ width:26px; height:26px; font-size:12px; }
+  .memoriesBtn__badge{ font-size:9.5px; padding:2px 6px; }
+
+  /* Floating keepsakes on mobile: 5 compact keepsakes framing the upper canopy */
+  .floatingPolaroid{
+    padding:4px 4px 10px 4px;
+    box-shadow:0 8px 22px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.12);
+  }
+  .floatingPolaroid__img{ width:54px; height:64px; }
+  .floatingPolaroid__label{ max-width:54px; font-size:9px; margin-top:3px; }
+  .floatingPolaroid__pin{ font-size:13px; top:-8px; }
+
+  /* Show 5 keepsakes framing the canopy cleanly (l1, l2 on left; r1, r2, r3 on right) */
+  .floatingPolaroid--r4,
+  .floatingPolaroid--r5,
+  .floatingPolaroid--l3{ display:none !important; }
+
+  .floatingPolaroid--l1{ display:block !important; top:8% !important; left:2.5% !important; }
+  .floatingPolaroid--l2{ display:block !important; top:23% !important; left:2% !important; }
+  .floatingPolaroid--r1{ display:block !important; top:8% !important; right:2.5% !important; }
+  .floatingPolaroid--r2{ display:block !important; top:20% !important; right:2% !important; }
+  .floatingPolaroid--r3{ display:block !important; top:34% !important; right:2.5% !important; }
+
+  /* Parchment Card */
+  .parchmentCard__title{ font-size:28px; }
+  .parchmentCard__body{ font-size:15.5px; }
+  .letterModal__content{ padding:20px 16px; max-height:94vh; }
+  .replay{ padding:8px 16px; font-size:11.5px; }
+
+  /* Memories Modal Mobile */
+  .memoriesModal__content{ width:95%; max-height:96vh; }
+  .polaroidShowcase{ gap:8px; }
+  .memNavBtn{ width:38px; height:38px; }
+  .polaroidCard{ padding:10px 10px 18px 10px; max-width:320px; }
+  .polaroidCard__photo{ height:300px; max-height:40vh; }
+  .polaroidCard__title{ font-size:18px; }
+  .polaroidCard__caption{ font-size:14.5px; }
+  .memoriesFilmstripWrap{ margin-top:10px; padding:4px 6px; }
+  .filmThumb{ width:44px; height:54px; }
 }
 
 @media (prefers-reduced-motion: reduce){
