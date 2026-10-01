@@ -63,7 +63,7 @@ body{
   display:block;
 }
 .stardustCanvas{ z-index:15; }
-.celebrationCanvas{ z-index:250; }
+.celebrationCanvas{ position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:250; }
 
 /* ============================================================
    TOP CONTROLS (GLASSMORPHISM)
@@ -915,6 +915,150 @@ body{
   box-shadow:0 8px 22px rgba(2, 132, 199, 0.35);
 }
 .letterMemoriesBtn:active{ transform:scale(0.97); }
+
+/* ============================================================
+   SAWAARI / FESTIVE BALLOONS & CHARMS PROCESSION STYLES
+   ============================================================ */
+.sawaariContainer{
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:260;
+  overflow:hidden;
+}
+
+.sawaariItem{
+  position:absolute;
+  bottom:-110px;
+  pointer-events:auto;
+  will-change:transform;
+  animation:sawaariRise var(--rise-duration, 4s) linear var(--rise-delay, 0s) forwards;
+}
+
+.sawaariBalloon{
+  position:relative;
+  width:58px; height:74px;
+  border-radius:50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow:inset -6px -8px 14px rgba(0,0,0,0.18), 0 14px 28px rgba(0,0,0,0.16);
+  cursor:pointer;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:manipulation;
+  animation:sawaariSway var(--sway-duration, 2s) ease-in-out infinite alternate;
+  transform-origin:50% 85%;
+  transition:filter 0.2s ease;
+}
+.sawaariBalloon:hover{
+  filter:brightness(1.1) drop-shadow(0 0 12px rgba(255,255,255,0.6));
+}
+.sawaariBalloon::after{
+  content:'';
+  position:absolute;
+  top:12px; left:12px;
+  width:14px; height:24px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.48);
+  transform:rotate(-28deg);
+  filter:blur(0.5px);
+}
+.sawaariKnot{
+  position:absolute;
+  bottom:-5px; left:50%;
+  transform:translateX(-50%);
+  width:10px; height:6px;
+  border-radius:3px;
+  background:inherit;
+}
+.sawaariString{
+  position:absolute;
+  top:100%; left:50%;
+  width:1.5px; height:64px;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg, rgba(140,140,140,0.65), rgba(140,140,140,0.1) 85%, transparent);
+}
+
+.sawaariCharm{
+  position:relative;
+  font-size:36px;
+  line-height:1;
+  cursor:pointer;
+  filter:drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:manipulation;
+  animation:sawaariSway var(--sway-duration, 1.8s) ease-in-out infinite alternate;
+  transform-origin:50% 50%;
+  transition:filter 0.2s ease;
+}
+.sawaariCharm:hover{
+  filter:brightness(1.2) drop-shadow(0 0 14px rgba(255,255,255,0.8));
+}
+
+.sawaariItem.sawaariPopped{
+  animation-play-state:paused !important;
+}
+.sawaariItem.sawaariPopped .sawaariBalloon,
+.sawaariItem.sawaariPopped .sawaariCharm{
+  animation:sawaariPop 0.26s ease-out forwards !important;
+  pointer-events:none !important;
+}
+
+@keyframes sawaariRise{
+  0%{
+    transform:translateY(0);
+    opacity:0;
+  }
+  6%{
+    opacity:1;
+  }
+  88%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(calc(-100vh - 180px));
+    opacity:0;
+  }
+}
+
+@keyframes sawaariSway{
+  0%{
+    transform:translateX(-18px) rotate(-6deg) scale(var(--target-scale, 1));
+  }
+  100%{
+    transform:translateX(18px) rotate(6deg) scale(var(--target-scale, 1));
+  }
+}
+
+@keyframes sawaariPop{
+  0%{ transform:scale(var(--target-scale, 1)); opacity:1; }
+  45%{ transform:scale(calc(var(--target-scale, 1) * 1.45)) rotate(12deg); opacity:0.85; filter:blur(1px); }
+  100%{ transform:scale(calc(var(--target-scale, 1) * 2.2)); opacity:0; filter:blur(6px); }
+}
+
+/* Cake Celebratory Pulse Aura */
+.cakeAuraPulse{
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%, -50%);
+  width:95px; height:85px; border-radius:50%;
+  border:2.5px solid rgba(245, 158, 11, 0.7);
+  box-shadow:0 0 25px rgba(245, 158, 11, 0.5), inset 0 0 15px rgba(254, 240, 138, 0.5);
+  animation:cakeAuraWave 1.8s ease-out infinite;
+  pointer-events:none;
+}
+@keyframes cakeAuraWave{
+  0%{ transform:translate(-50%, -50%) scale(0.7); opacity:0.9; }
+  100%{ transform:translate(-50%, -50%) scale(1.6); opacity:0; }
+}
+
+.blowWishBtn.is-blown{
+  background:linear-gradient(135deg, #10b981, #059669) !important;
+  box-shadow:0 8px 24px -2px rgba(16, 185, 129, 0.5) !important;
+  cursor:default;
+  animation:blownBtnGlow 2.4s ease-in-out infinite alternate;
+}
+@keyframes blownBtnGlow{
+  0%{ box-shadow:0 8px 20px rgba(16, 185, 129, 0.45); }
+  100%{ box-shadow:0 12px 28px rgba(245, 158, 11, 0.65); }
+}
 
 /* ============================================================
    POLAROID MEMORY SCRAPBOOK MODAL

@@ -382,23 +382,88 @@ class BirthdayAudioEngine {
     breath.start(now);
     breath.stop(now + 0.42);
 
-    // Confetti pop & celebration fanfare (C-E-G-C triumph chord)
+    // Snappy celebratory party popper pop (noise burst + downward pitch)
     setTimeout(() => {
       if (!this.ctx || this.isMuted) return;
       const t = this.ctx.currentTime;
-      [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, i) => {
+
+      // Popper crisp burst
+      const popSize = this.ctx.sampleRate * 0.08;
+      const popBuf = this.ctx.createBuffer(1, popSize, this.ctx.sampleRate);
+      const popData = popBuf.getChannelData(0);
+      for (let i = 0; i < popSize; i++) popData[i] = (Math.random() * 2 - 1) * Math.exp(-i / (popSize * 0.2));
+      const popSrc = this.ctx.createBufferSource();
+      popSrc.buffer = popBuf;
+      const popGain = this.ctx.createGain();
+      popGain.gain.setValueAtTime(0.4, t);
+      popGain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+      popSrc.connect(popGain);
+      popGain.connect(this.sfxGain);
+      popSrc.start(t);
+
+      // Cheerful celebratory fanfare chord arpeggio (C-E-G-B-C-E triumph)
+      [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51, 1567.98].forEach((freq, i) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, t + i * 0.04);
-        gain.gain.setValueAtTime(0.24, t + i * 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.04 + 1.5);
+        osc.type = i % 2 === 0 ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(freq, t + i * 0.05);
+        gain.gain.setValueAtTime(0.28, t + i * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.05 + 1.8);
         osc.connect(gain);
         gain.connect(this.sfxGain);
-        osc.start(t + i * 0.04);
-        osc.stop(t + i * 0.04 + 1.6);
+        osc.start(t + i * 0.05);
+        osc.stop(t + i * 0.05 + 1.9);
       });
-    }, 280);
+
+      // Whimsical party horn flourish
+      const hornOsc = this.ctx.createOscillator();
+      const hornGain = this.ctx.createGain();
+      hornOsc.type = 'sawtooth';
+      hornOsc.frequency.setValueAtTime(440, t + 0.2);
+      hornOsc.frequency.linearRampToValueAtTime(880, t + 0.55);
+      const hornFilt = this.ctx.createBiquadFilter();
+      hornFilt.type = 'lowpass';
+      hornFilt.frequency.setValueAtTime(1400, t + 0.2);
+      hornGain.gain.setValueAtTime(0.08, t + 0.2);
+      hornGain.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+      hornOsc.connect(hornFilt);
+      hornFilt.connect(hornGain);
+      hornGain.connect(this.sfxGain);
+      hornOsc.start(t + 0.2);
+      hornOsc.stop(t + 0.65);
+    }, 240);
+  }
+
+  /* Tactile Balloon / Charm Pop sound */
+  playBalloonPop() {
+    this.init();
+    if (!this.ctx || this.isMuted) return;
+    const now = this.ctx.currentTime;
+
+    // Snappy high-frequency rubber pop
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(1200, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + 0.07);
+    gain.gain.setValueAtTime(0.3, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+    osc.connect(gain);
+    gain.connect(this.sfxGain);
+    osc.start(now);
+    osc.stop(now + 0.09);
+
+    // Cute sparkle chime ping
+    const chime = this.ctx.createOscillator();
+    const cGain = this.ctx.createGain();
+    chime.type = 'sine';
+    chime.frequency.setValueAtTime(1760 + Math.random() * 400, now + 0.02);
+    cGain.gain.setValueAtTime(0.18, now + 0.02);
+    cGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+    chime.connect(cGain);
+    cGain.connect(this.sfxGain);
+    chime.start(now + 0.02);
+    chime.stop(now + 0.5);
   }
 
   /* Tactile Polaroid photo flip */

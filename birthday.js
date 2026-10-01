@@ -6,7 +6,7 @@
 
 import gsap from 'gsap';
 import { sound } from './audio.js';
-import { StardustTrail, CelebrationFX } from './celebration.js';
+import { StardustTrail, CelebrationFX, SawaariProcession } from './celebration.js';
 import { PALETTES, CURRENT_THEME } from './palettes.js';
 import { initMemories, showFloatingPolaroids, stopFloatingPolaroids } from './memories.js';
 
@@ -79,6 +79,7 @@ const toast            = $('toast');
 /* FX Engines */
 const stardust = new StardustTrail($('stardustCanvas'));
 const celebration = new CelebrationFX($('celebrationCanvas'));
+const sawaari = new SawaariProcession($('sawaariContainer'), celebration, sound);
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isRecord     = new URLSearchParams(location.search).has('record');
@@ -1007,16 +1008,36 @@ if (letterBackdrop) {
   });
 }
 
-// Interactive Wish Candle & Confetti
+// Interactive Wish Candle, Sawaari & Confetti
 if (blowWishBtn) {
   blowWishBtn.addEventListener('click', () => {
     sound.playCandleBlowAndConfetti();
     if (candleFlame) candleFlame.classList.add('is-out');
     if (candleSmoke) candleSmoke.classList.add('is-active');
-    celebration.burst(window.innerWidth * 0.5, window.innerHeight * 0.5);
+
+    // Grand multi-stage celebratory fireworks and dual confetti cannons
+    celebration.grandCelebration();
+
+    // Sawaari: Floating festive balloons & celebration charms parade
+    sawaari.launch();
+
+    // Cake celebratory pulse aura
+    const cakeVisual = $('cakeVisual');
+    if (cakeVisual && !cakeVisual.querySelector('.cakeAuraPulse')) {
+      const aura = document.createElement('div');
+      aura.className = 'cakeAuraPulse';
+      cakeVisual.appendChild(aura);
+    }
+
     if (wishCelebrationNote) wishCelebrationNote.classList.add('is-shown');
+
+    // Triumphant button transformation
+    blowWishBtn.classList.add('is-blown');
+    blowWishBtn.innerHTML = `
+      <span class="blowWishBtn__icon">🎉</span>
+      <span class="blowWishBtn__text">Wish Sent to the Universe! 🥳</span>
+    `;
     blowWishBtn.style.pointerEvents = 'none';
-    blowWishBtn.style.opacity = '0.6';
   });
 }
 
