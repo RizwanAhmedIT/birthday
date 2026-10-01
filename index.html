@@ -293,49 +293,50 @@
       <button class="modalCloseBtn" id="letterCloseBtn" type="button" aria-label="Close letter">&times;</button>
 
       <div class="parchmentCard">
-        <div class="parchmentCard__stamp" id="cardStamp">✨</div>
-        <p class="parchmentCard__date" id="letterDate">Season of Mehwish &bull; Celebrating You Today</p>
-        <h3 class="parchmentCard__title" id="letterTitle">Happy Birthday, Mehwish! 🎂✨</h3>
+        <!-- Main Letter Column -->
+        <div class="parchmentCard__main">
+          <div class="parchmentCard__stamp" id="cardStamp">✨</div>
+          <p class="parchmentCard__date" id="letterDate">Season of Mehwish &bull; Celebrating You Today</p>
+          <h3 class="parchmentCard__title" id="letterTitle">Happy Birthday, Mehwish! 🎂✨</h3>
 
-        <div class="parchmentCard__body" id="letterBody">
-          Happy Birthday to the ultimate friend with unmatched main character energy! 🌟
+          <div class="parchmentCard__body" id="letterBody">
+            <p>Happy Birthday to the friend with unmatched main character energy! 🌟😂</p>
+            <p>Here’s to another amazing year filled with lots of laughter, crazy memories, good vibes, aur bilkul bhi boring moments nahi! 🥳✨</p>
+            <p>Thank you for being such an awesome, dependable aur genuine friend. Hamesha aise hi khush rehna, apne goals ke peeche jaana aur apni positive energy se sabka mood acha karte rehna. ❤️</p>
+            <p>May this new chapter bring you lots of happiness, good health, great food, amazing memories aur life mein bohot saari success. Jo bhi tum chaho, woh sab mile! 🫰✨</p>
+            <p class="parchmentCard__highlight">Once again, <strong>Happy Birthday, Birthday Girl! 🎂🥳</strong><br />Enjoy your day to the fullest! ❤️</p>
+          </div>
 
-          Here’s to another fantastic year filled with binge-worthy K-drama plot twists, your favorite K-pop anthems on
-          max volume, endless laughter, and absolutely zero filler episodes!
-
-          Thank you for being such an awesome, dependable, and genuine friend. Watching you chase your goals and bring
-          so much bright, fun energy to everyone around you is truly inspiring.
-
-          May this new chapter bring you blockbuster happiness, good health, great food, and wild success in everything
-          you set your mind to. Hwaiting! 🫰✨
+          <p class="parchmentCard__signoff" id="letterSignoff">From your hype squad &amp; good friend, always! 🥂🎉</p>
         </div>
 
-        <p class="parchmentCard__signoff" id="letterSignoff">From your hype squad &amp; good friend, always! 🥂🎉</p>
-
-        <!-- Quick link to photo memories album -->
-        <button class="letterMemoriesBtn" id="letterMemoriesBtn" type="button">
-          <span class="letterMemoriesBtn__icon">📸</span>
-          <span class="letterMemoriesBtn__text">Browse All Moments &amp; Memories</span>
-        </button>
-
-        <!-- Interactive Candle & Birthday Cake Section -->
-        <div class="wishCakeSection">
-          <div class="cakeVisual" id="cakeVisual">
-            <div class="cakeBase">
-              <div class="cakeIcing"></div>
+        <!-- Celebratory Cake & Interactive Action Column -->
+        <div class="parchmentCard__side">
+          <div class="wishCakeSection">
+            <div class="cakeVisual" id="cakeVisual">
+              <div class="cakeBase">
+                <div class="cakeIcing"></div>
+              </div>
+              <div class="candleStick">
+                <div class="candleFlame" id="candleFlame"></div>
+                <div class="candleSmoke" id="candleSmoke"></div>
+              </div>
             </div>
-            <div class="candleStick">
-              <div class="candleFlame" id="candleFlame"></div>
-              <div class="candleSmoke" id="candleSmoke"></div>
+
+            <div class="wishCakeActions">
+              <button class="blowWishBtn" id="blowWishBtn" type="button">
+                <span class="blowWishBtn__icon">🎂</span>
+                <span class="blowWishBtn__text" id="blowWishText">Blow Candle &amp; Make a Wish!</span>
+              </button>
+              <p class="wishCelebrationNote" id="wishCelebrationNote">May all your sweetest wishes come true! ✨</p>
             </div>
           </div>
 
-          <button class="blowWishBtn" id="blowWishBtn" type="button">
-            <span class="blowWishBtn__icon">🎂</span>
-            <span class="blowWishBtn__text" id="blowWishText">Blow Out the Candle &amp; Make a Wish!</span>
+          <!-- Quick link to photo memories album -->
+          <button class="letterMemoriesBtn" id="letterMemoriesBtn" type="button">
+            <span class="letterMemoriesBtn__icon">📸</span>
+            <span class="letterMemoriesBtn__text">Browse All 17 Memories</span>
           </button>
-
-          <p class="wishCelebrationNote" id="wishCelebrationNote">May all your sweetest wishes come true! ✨</p>
         </div>
       </div>
     </div>

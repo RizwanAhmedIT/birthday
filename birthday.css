@@ -718,12 +718,12 @@ body{
 
 .letterModal__content{
   position:relative; z-index:2;
-  width:100%; max-width:520px;
+  width:100%; max-width:820px;
   background:linear-gradient(135deg, #fffdf8 0%, #fdf8ee 100%);
   border-radius:24px;
   border:1.5px solid var(--glass-border);
   box-shadow:0 24px 60px -12px rgba(69, 26, 3, 0.35), 0 2px 10px rgba(255,255,255,0.9) inset;
-  padding:26px 32px;
+  padding:24px 28px;
   transform:scale(0.92) translateY(12px);
   transition:transform 0.4s var(--ease-bounce);
   max-height:92vh; overflow-y:auto;
@@ -746,70 +746,79 @@ body{
   display:flex; justify-content:center; align-items:center;
   cursor:pointer;
   transition:all 0.2s ease;
+  z-index:10;
 }
 .modalCloseBtn:hover{
   background:var(--gold-2); color:#fff;
   transform:rotate(90deg);
 }
 
-.parchmentCard{ text-align:center; position:relative; }
+.parchmentCard{
+  display:grid;
+  grid-template-columns:1.24fr 0.76fr;
+  gap:24px;
+  align-items:center;
+  position:relative;
+}
+.parchmentCard__main{
+  display:flex; flex-direction:column;
+  text-align:left;
+}
 .parchmentCard__stamp{
-  width:36px; height:36px; border-radius:50%;
-  margin:0 auto 8px;
+  width:32px; height:32px; border-radius:50%;
+  margin-bottom:8px;
   background:radial-gradient(circle at 35% 35%, #fbbf24, #b45309);
-  color:#fff; display:flex; justify-content:center; align-items:center;
-  font-size:16px; box-shadow:0 4px 12px rgba(180, 83, 9, 0.3);
+  color:#fff; display:inline-flex; justify-content:center; align-items:center;
+  font-size:15px; box-shadow:0 4px 12px rgba(180, 83, 9, 0.3);
+  align-self:flex-start;
 }
 .parchmentCard__date{
   font-family:'Cormorant Garamond', Georgia, serif;
   font-style:italic; font-size:13px;
   letter-spacing:0.08em; text-transform:uppercase;
-  color:var(--ink-soft); margin-bottom:6px;
+  color:var(--ink-soft); margin-bottom:4px;
 }
 .parchmentCard__title{
   font-family:'Fraunces', "Playfair Display", Georgia, serif;
-  font-size:32px; font-weight:800;
-  color:var(--ink); line-height:1.15; margin-bottom:12px;
+  font-size:27px; font-weight:800;
+  color:var(--ink); line-height:1.2; margin-bottom:10px;
 }
 .parchmentCard__body{
   font-family:'Cormorant Garamond', Georgia, serif;
-  font-size:17.5px; line-height:1.55;
-  color:var(--ink); margin-bottom:14px;
-  white-space:pre-wrap;
+  font-size:16px; line-height:1.48;
+  color:var(--ink); margin-bottom:10px;
+}
+.parchmentCard__body p{
+  margin:0 0 7px 0;
+}
+.parchmentCard__highlight{
+  color:var(--ink); font-weight:600;
+  margin-top:8px !important;
 }
 .parchmentCard__signoff{
   font-family:'Cormorant Garamond', Georgia, serif;
   font-style:italic; font-weight:600;
-  font-size:16.5px; color:var(--ink-soft); margin-bottom:14px;
+  font-size:15.5px; color:var(--ink-soft); margin-top:2px; margin-bottom:0;
 }
 
-.letterMemoriesBtn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  margin:0 auto 14px auto; padding:8px 18px;
-  border-radius:999px; border:1px solid rgba(2, 132, 199, 0.35);
-  background:linear-gradient(135deg, rgba(224, 242, 254, 0.9), rgba(186, 230, 253, 0.95));
-  color:#0369a1; font-family:'Outfit', sans-serif;
-  font-size:12.5px; font-weight:600; cursor:pointer;
-  box-shadow:0 4px 12px rgba(2, 132, 199, 0.14);
-  transition:all 0.25s var(--ease-bounce);
+/* Right Celebratory Side Panel */
+.parchmentCard__side{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 50% 32%, rgba(254, 240, 138, 0.45), rgba(254, 243, 199, 0.2) 70%, transparent 100%), rgba(255, 255, 255, 0.55);
+  border:1.5px dashed rgba(245, 158, 11, 0.4);
+  border-radius:20px;
+  padding:22px 18px;
+  box-shadow:0 8px 24px rgba(245, 158, 11, 0.08);
+  text-align:center;
 }
-.letterMemoriesBtn:hover{
-  transform:translateY(-2px) scale(1.03);
-  background:linear-gradient(135deg, #0284c7, #0ea5e9);
-  color:#ffffff;
-  box-shadow:0 8px 22px rgba(2, 132, 199, 0.35);
-}
-.letterMemoriesBtn:active{ transform:scale(0.97); }
 
-/* Interactive Birthday Cake & Wish Candle */
 .wishCakeSection{
-  margin-top:8px; padding-top:14px;
-  border-top:1px dashed rgba(245, 158, 11, 0.35);
   display:flex; flex-direction:column; align-items:center;
+  width:100%;
 }
 .cakeVisual{
   position:relative; width:76px; height:68px;
-  margin-bottom:12px; display:flex; justify-content:center;
+  margin-bottom:14px; display:flex; justify-content:center;
 }
 .cakeBase{
   position:absolute; bottom:0; width:76px; height:38px;
@@ -857,31 +866,55 @@ body{
   100%{ opacity:0; transform:translateX(-80%) translateY(-45px) scale(3.5); filter:blur(4px); }
 }
 
+.wishCakeActions{
+  display:flex; flex-direction:column; align-items:center;
+  width:100%;
+}
 .blowWishBtn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:12px 26px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:11px 22px; border-radius:999px;
   background:linear-gradient(135deg, #f59e0b, #d97706);
   border:none; color:#fff;
   font-family:'Outfit', sans-serif;
-  font-weight:600; font-size:14px;
-  box-shadow:0 10px 24px -4px rgba(217, 119, 6, 0.4);
+  font-weight:600; font-size:13.5px;
+  box-shadow:0 8px 20px -3px rgba(217, 119, 6, 0.42);
   cursor:pointer;
   transition:all 0.3s var(--ease-bounce);
+  width:100%; max-width:240px;
 }
 .blowWishBtn:hover{
-  transform:translateY(-2px) scale(1.04);
-  box-shadow:0 14px 30px -4px rgba(217, 119, 6, 0.55);
+  transform:translateY(-2px) scale(1.03);
+  box-shadow:0 12px 26px -3px rgba(217, 119, 6, 0.55);
 }
-.blowWishBtn:active{ transform:scale(0.96); }
+.blowWishBtn:active{ transform:scale(0.97); }
 
 .wishCelebrationNote{
-  margin-top:14px;
+  margin-top:10px; margin-bottom:4px;
   font-family:'Cormorant Garamond', Georgia, serif;
-  font-style:italic; font-weight:600; font-size:18px;
-  color:#b45309; opacity:0; transform:translateY(8px);
-  transition:all 0.6s var(--ease-out);
+  font-style:italic; font-weight:600; font-size:16px;
+  color:#b45309; opacity:0; transform:translateY(6px);
+  transition:all 0.5s var(--ease-out);
 }
 .wishCelebrationNote.is-shown{ opacity:1; transform:translateY(0); }
+
+.letterMemoriesBtn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:12px; padding:9px 18px;
+  border-radius:999px; border:1px solid rgba(2, 132, 199, 0.35);
+  background:linear-gradient(135deg, rgba(224, 242, 254, 0.95), rgba(186, 230, 253, 0.95));
+  color:#0369a1; font-family:'Outfit', sans-serif;
+  font-size:12.5px; font-weight:600; cursor:pointer;
+  box-shadow:0 4px 12px rgba(2, 132, 199, 0.14);
+  transition:all 0.25s var(--ease-bounce);
+  width:100%; max-width:240px;
+}
+.letterMemoriesBtn:hover{
+  transform:translateY(-2px) scale(1.03);
+  background:linear-gradient(135deg, #0284c7, #0ea5e9);
+  color:#ffffff;
+  box-shadow:0 8px 22px rgba(2, 132, 199, 0.35);
+}
+.letterMemoriesBtn:active{ transform:scale(0.97); }
 
 /* ============================================================
    POLAROID MEMORY SCRAPBOOK MODAL
@@ -1115,10 +1148,35 @@ body{
   .floatingPolaroid--r2{ display:block !important; top:20% !important; right:2% !important; }
   .floatingPolaroid--r3{ display:block !important; top:34% !important; right:2.5% !important; }
 
-  /* Parchment Card */
-  .parchmentCard__title{ font-size:28px; }
-  .parchmentCard__body{ font-size:15.5px; }
-  .letterModal__content{ padding:20px 16px; max-height:94vh; }
+  /* Parchment Card Mobile */
+  .letterModal__content{ padding:16px 14px 14px; max-height:94vh; max-width:94%; }
+  .parchmentCard{ display:flex; flex-direction:column; gap:10px; text-align:center; }
+  .parchmentCard__main{ text-align:center; }
+  .parchmentCard__stamp{ margin:0 auto 4px auto; width:28px; height:28px; font-size:13px; align-self:center; }
+  .parchmentCard__date{ font-size:11px; margin-bottom:2px; }
+  .parchmentCard__title{ font-size:21px; margin-bottom:6px; }
+  .parchmentCard__body{ font-size:13.5px; line-height:1.42; margin-bottom:6px; }
+  .parchmentCard__body p{ margin:0 0 5px 0; }
+  .parchmentCard__highlight{ margin-top:6px !important; }
+  .parchmentCard__signoff{ font-size:13px; margin-bottom:4px; }
+
+  .parchmentCard__side{
+    padding:10px 10px; border-radius:14px; gap:6px;
+    background:rgba(254, 240, 138, 0.28);
+    box-shadow:none;
+  }
+  .wishCakeSection{
+    flex-direction:row; gap:12px; align-items:center; justify-content:center;
+  }
+  .cakeVisual{ width:50px; height:46px; margin-bottom:0; flex-shrink:0; }
+  .cakeBase{ width:50px; height:26px; }
+  .cakeIcing{ height:9px; top:-3px; }
+  .candleStick{ height:18px; bottom:23px; width:6px; }
+  .candleFlame{ width:9px; height:12px; top:-12px; }
+  .wishCakeActions{ align-items:center; text-align:center; flex:1; max-width:210px; }
+  .blowWishBtn{ padding:8px 14px; font-size:12px; max-width:100%; gap:5px; }
+  .wishCelebrationNote{ font-size:13px; margin-top:3px; margin-bottom:0; }
+  .letterMemoriesBtn{ margin-top:4px; padding:7px 14px; font-size:11px; max-width:100%; }
   .replay{ padding:8px 16px; font-size:11.5px; }
 
   /* Memories Modal Mobile */
