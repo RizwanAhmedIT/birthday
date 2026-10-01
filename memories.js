@@ -11,121 +11,121 @@ export const MEMORIES = [
   {
     id: 1,
     src: '/birthday-person/Snapchat-949252343.jpg',
-    title: 'Brightest Smile',
-    caption: 'That unforgettable, contagious smile that lights up every room ✨',
-    tag: 'Favorite Moments'
+    title: 'Main Character Vibes',
+    caption: 'Serving pure K-drama female lead energy with that iconic smile ✨',
+    tag: 'Drama Lead'
   },
   {
     id: 2,
     src: '/birthday-person/IMG-20221001-WA0000.jpg',
-    title: 'Grace & Elegance',
-    caption: 'Dressed up and glowing — celebrating another wonderful chapter 🌸',
-    tag: 'Celebration'
+    title: 'Red Carpet Ready',
+    caption: 'Dressed up with grace and elegance — looking ready for an award show red carpet 🌸',
+    tag: 'Red Carpet'
   },
   {
     id: 3,
     src: '/birthday-person/IMG-20221001-WA0001.jpg',
-    title: 'Pure Laughter',
-    caption: 'The moments where we could not stop laughing until our stomachs hurt 💫',
+    title: 'Uncontrollable Laughs',
+    caption: 'Those hilarious friend moments that deserve their own comedy drama OST 💫',
     tag: 'Good Times'
   },
   {
     id: 4,
     src: '/birthday-person/IMG-20221001-WA0002.jpg',
-    title: 'Golden Days',
-    caption: 'Memories together that turn everyday moments into gold 💛',
-    tag: 'Memories'
+    title: 'Wholesome Squad',
+    caption: 'Treasured friend memories that make life’s storyline so much better 💛',
+    tag: 'Friendship'
   },
   {
     id: 5,
     src: '/birthday-person/IMG-20221001-WA0003.jpg',
-    title: 'Sweet Candid',
-    caption: 'Caught in the moment — natural, effortless, and radiant 📸',
+    title: 'Effortless Candid',
+    caption: 'Caught completely off-guard but still glowing like a K-pop idol 📸',
     tag: 'Candid'
   },
   {
     id: 6,
     src: '/birthday-person/IMG-20221001-WA0004.jpg',
-    title: 'Radiant Energy',
-    caption: 'Bringing sunshine and positivity everywhere you go ☀️',
-    tag: 'Joy'
+    title: 'Sunny Day Glow',
+    caption: 'Bringing cheerful vibes and bright sunshine everywhere you go ☀️',
+    tag: 'Positive Vibes'
   },
   {
     id: 7,
     src: '/birthday-person/IMG-20221001-WA0005.jpg',
-    title: 'Cherished Friend',
-    caption: 'Forever thankful for a friendship as genuine and special as ours 🥂',
-    tag: 'Friendship'
+    title: 'Friendship Goals',
+    caption: 'Forever grateful for a friend as genuine, fun, and supportive as you 🥂',
+    tag: 'Best Crew'
   },
   {
     id: 8,
     src: '/birthday-person/IMG-20221001-WA0006.jpg',
-    title: 'Golden Hour Smile',
-    caption: 'Warm memories that we will look back on for years to come 🌅',
-    tag: 'Golden Hour'
+    title: 'Mirror Fit Check',
+    caption: 'Flawless fit check — definitely deserves its own debut concept teaser 🕶️✨',
+    tag: 'Fit Check'
   },
   {
     id: 9,
     src: '/birthday-person/IMG-20221001-WA0007.jpg',
-    title: 'Precious Keepsake',
-    caption: 'A snapshot of happiness frozen in time 💖',
-    tag: 'Keepsake'
+    title: 'Precious Memories',
+    caption: 'A snapshot of pure happiness to look back on and smile 💖',
+    tag: 'Keepsakes'
   },
   {
     id: 10,
     src: '/birthday-person/IMG-20221001-WA0008.jpg',
-    title: 'Warm & Kind',
-    caption: 'Always thoughtful, always caring, and such a wonderful soul 🌷',
-    tag: 'Sweet Moments'
+    title: 'Sweet & Kind',
+    caption: 'Always thoughtful, caring, and the most supportive friend anyone could ask for 🌷',
+    tag: 'Kind Soul'
   },
   {
     id: 11,
     src: '/birthday-person/IMG-20221001-WA0009.jpg',
-    title: 'Happy Days',
-    caption: 'Wishing you 365 more days filled with this same happiness ✨',
-    tag: 'Wishes'
+    title: 'Binge Watch Mode',
+    caption: 'Here is to 100 more late-night K-drama binge sessions and wild plot twists 🎬🍿',
+    tag: 'K-Drama Fan'
   },
   {
     id: 12,
     src: '/birthday-person/IMG-20221001-WA0010.jpg',
     title: 'Birthday Star',
-    caption: 'Celebrating the incredible, one-of-a-kind person you are 🎉',
-    tag: 'Cheers'
+    caption: 'Celebrating the awesome, one-of-a-kind friend you are — today is your day! 🎉',
+    tag: 'Celebration'
   },
   {
     id: 13,
     src: '/birthday-person/IMG-20210930-WA0032.jpg',
-    title: 'Looking Back',
-    caption: 'Time flies, but the greatest friendships only get stronger 🍃',
+    title: 'Golden Throwback',
+    caption: 'Time flies fast, but great friendships stay timeless and strong 🍃',
     tag: 'Nostalgia'
   },
   {
     id: 14,
     src: '/birthday-person/IMG-20210930-WA0035.jpg',
-    title: 'Endless Sunshine',
-    caption: 'Keep shining your light wherever life takes you 🌼',
-    tag: 'Sunshine'
+    title: 'Bright Aura',
+    caption: 'Keep lighting up the world with your bright, cheerful energy 🌼',
+    tag: 'Bright Energy'
   },
   {
     id: 15,
     src: '/birthday-person/IMG-20210930-WA0036.jpg',
-    title: 'Storybook Chapter',
-    caption: 'Another unforgettable chapter in the story of life 📖',
-    tag: 'Adventures'
+    title: 'New Season Awaits',
+    caption: 'Stepping into a brand new episode of life with big dreams and zero filler 📖',
+    tag: 'Next Episode'
   },
   {
     id: 16,
     src: '/birthday-person/IMG_8907.JPG',
-    title: 'Sparkle & Joy',
-    caption: 'That sparkle in your eyes that never dims 💫',
-    tag: 'Sparkle'
+    title: 'K-Pop Playlist Vibe',
+    caption: 'Cue your favorite upbeat track — life is always better with great bops 🎶✨',
+    tag: 'K-Pop Mood'
   },
   {
     id: 17,
     src: '/birthday-person/20230321_201614.jpg',
-    title: 'To Bright Horizons',
-    caption: 'Here is to new dreams, bigger adventures, and endless joy! 🚀✨',
-    tag: 'Future'
+    title: 'Hwaiting, Mehwish!',
+    caption: 'Wishing you blockbuster success, epic milestones, and endless joy ahead! 🚀🫰',
+    tag: 'Future Goals'
   },
 ];
 

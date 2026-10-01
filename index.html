@@ -1,26 +1,31 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Happy Birthday! — a celebratory film</title>
-  <meta name="description" content="A cinematic interactive birthday celebration: draw Cupid's bow, unleash a flood of blooms, read a heartfelt card, and blow out the wish candle with celebratory confetti." />
+  <title>Happy Birthday, Mehwish! 🎂✨ — A Celebratory Film</title>
+  <meta name="description"
+    content="A cinematic interactive birthday celebration for Mehwish: draw the bow, unleash a flood of blooms, read a heartfelt card, and blow out the wish candle with celebratory confetti." />
   <meta name="theme-color" content="#fcf0dc" />
   <link rel="icon" type="image/png" href="/favicon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800;9..144,900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800;9..144,900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="./birthday.css" />
 </head>
+
 <body>
   <!-- Top Luxury Glassmorphism Control Bar -->
   <header class="topBar" id="topBar" role="banner">
     <div class="topBar__badge">
       <span class="topBar__dot"></span>
-      <span class="topBar__title">A Film For Your Birthday</span>
+      <span class="topBar__title">A Film For Mehwish 🎬✨</span>
     </div>
 
     <div class="topBar__controls">
@@ -40,7 +45,8 @@
   <main class="scene" id="scene">
 
     <!-- The tree world (Act 4). Canvas draws warm sky + blooming heart tree -->
-    <canvas id="tree" class="tree" aria-label="A blossom tree grows and blooms into a heart made of petals" role="img"></canvas>
+    <canvas id="tree" class="tree" aria-label="A blossom tree grows and blooms into a heart made of petals"
+      role="img"></canvas>
 
     <!-- Interactive Stardust Fairy Trail Canvas -->
     <canvas id="stardustCanvas" class="fxCanvas stardustCanvas" aria-hidden="true"></canvas>
@@ -65,7 +71,7 @@
         <path class="trajectoryPath" id="trajectoryPath" d="" />
       </svg>
 
-      <p class="hero__eyebrow" id="eyebrow">a little celebration, for you</p>
+      <p class="hero__eyebrow" id="eyebrow">for Mehwish &bull; on your special day</p>
 
       <!-- THE TARGET — celebratory golden star-heart -->
       <div class="targetWrap" aria-hidden="true">
@@ -77,18 +83,22 @@
             <svg class="heart__svg" viewBox="0 0 100 92" aria-hidden="true">
               <defs>
                 <radialGradient id="hg" cx="38%" cy="30%" r="80%">
-                  <stop id="tgStop0" offset="0%"  stop-color="#fffbeb" />
+                  <stop id="tgStop0" offset="0%" stop-color="#fffbeb" />
                   <stop id="tgStop1" offset="38%" stop-color="#fde047" />
                   <stop id="tgStop2" offset="78%" stop-color="#f59e0b" />
                   <stop id="tgStop3" offset="100%" stop-color="#b45309" />
                 </radialGradient>
                 <linearGradient id="hsheen" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"  stop-color="rgba(255,255,255,.94)" />
+                  <stop offset="0%" stop-color="rgba(255,255,255,.94)" />
                   <stop offset="35%" stop-color="rgba(255,255,255,0)" />
                 </linearGradient>
               </defs>
-              <path d="M50 86.5C26 68 10.5 53.6 10.5 34.6 10.5 20.4 21 11 33.2 11c8.6 0 14.2 4.7 16.8 11.4C52.6 15.7 58.2 11 66.8 11 79 11 89.5 20.4 89.5 34.6 89.5 53.6 74 68 50 86.5Z" fill="url(#hg)" />
-              <path d="M50 86.5C26 68 10.5 53.6 10.5 34.6 10.5 20.4 21 11 33.2 11c8.6 0 14.2 4.7 16.8 11.4C52.6 15.7 58.2 11 66.8 11 79 11 89.5 20.4 89.5 34.6 89.5 53.6 74 68 50 86.5Z" fill="url(#hsheen)" opacity=".75" />
+              <path
+                d="M50 86.5C26 68 10.5 53.6 10.5 34.6 10.5 20.4 21 11 33.2 11c8.6 0 14.2 4.7 16.8 11.4C52.6 15.7 58.2 11 66.8 11 79 11 89.5 20.4 89.5 34.6 89.5 53.6 74 68 50 86.5Z"
+                fill="url(#hg)" />
+              <path
+                d="M50 86.5C26 68 10.5 53.6 10.5 34.6 10.5 20.4 21 11 33.2 11c8.6 0 14.2 4.7 16.8 11.4C52.6 15.7 58.2 11 66.8 11 79 11 89.5 20.4 89.5 34.6 89.5 53.6 74 68 50 86.5Z"
+                fill="url(#hsheen)" opacity=".75" />
               <ellipse cx="34" cy="30" rx="8.5" ry="5.4" fill="#fff" opacity=".76" style="mix-blend-mode:screen" />
             </svg>
           </span>
@@ -97,84 +107,92 @@
 
       <!-- THE BOW + ARROW -->
       <div class="archery" id="archery" role="button" tabindex="0"
-           aria-label="Draw the bow and release to send the arrow, or click to shoot">
+        aria-label="Draw the bow and release to send the arrow, or click to shoot">
 
-          <div class="aim" id="aim" aria-hidden="true"></div>
+        <div class="aim" id="aim" aria-hidden="true"></div>
 
-          <svg class="bow" id="bow" viewBox="0 0 460 300" aria-hidden="true">
-            <defs>
-              <linearGradient id="limb" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0"   stop-color="#3c2214" />
-                <stop offset=".18" stop-color="#5a351d" />
-                <stop offset=".5"  stop-color="#7c4620" />
-                <stop offset=".82" stop-color="#5a351d" />
-                <stop offset="1"   stop-color="#3c2214" />
-              </linearGradient>
-              <linearGradient id="limbHi" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="rgba(255,220,165,.8)" />
-                <stop offset="1" stop-color="rgba(255,220,165,0)" />
-              </linearGradient>
-              <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#24140a" />
-                <stop offset=".5" stop-color="#4e2c17" />
-                <stop offset="1" stop-color="#24140a" />
-              </linearGradient>
-            </defs>
-            <path class="bow__limb" d="M34 96 C 118 168, 168 240, 230 252 C 292 240, 342 168, 426 96"
-                  fill="none" stroke="url(#limb)" stroke-width="13" stroke-linecap="round" />
-            <path class="bow__limbHi" d="M34 96 C 118 168, 168 240, 230 252 C 292 240, 342 168, 426 96"
-                  fill="none" stroke="url(#limbHi)" stroke-width="3" stroke-linecap="round" opacity=".7" />
-            <path d="M34 96 C 22 82, 26 70, 40 66" fill="none" stroke="url(#limb)" stroke-width="8" stroke-linecap="round" />
-            <path d="M426 96 C 438 82, 434 70, 420 66" fill="none" stroke="url(#limb)" stroke-width="8" stroke-linecap="round" />
-            <rect x="216" y="206" width="28" height="70" rx="9" fill="url(#grip)" />
-            <path d="M219 220h22 M219 236h22 M219 252h22" stroke="rgba(0,0,0,.35)" stroke-width="2" />
-            <line class="bow__str" id="strL" x1="40" y1="70" x2="230" y2="96" stroke="#9a8068" stroke-width="2.2" stroke-linecap="round" />
-            <line class="bow__str" id="strR" x1="420" y1="70" x2="230" y2="96" stroke="#9a8068" stroke-width="2.2" stroke-linecap="round" />
-            <circle class="bow__serving" id="serving" cx="230" cy="96" r="4.5" fill="#6f5137" />
-          </svg>
+        <svg class="bow" id="bow" viewBox="0 0 460 300" aria-hidden="true">
+          <defs>
+            <linearGradient id="limb" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#3c2214" />
+              <stop offset=".18" stop-color="#5a351d" />
+              <stop offset=".5" stop-color="#7c4620" />
+              <stop offset=".82" stop-color="#5a351d" />
+              <stop offset="1" stop-color="#3c2214" />
+            </linearGradient>
+            <linearGradient id="limbHi" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="rgba(255,220,165,.8)" />
+              <stop offset="1" stop-color="rgba(255,220,165,0)" />
+            </linearGradient>
+            <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#24140a" />
+              <stop offset=".5" stop-color="#4e2c17" />
+              <stop offset="1" stop-color="#24140a" />
+            </linearGradient>
+          </defs>
+          <path class="bow__limb" d="M34 96 C 118 168, 168 240, 230 252 C 292 240, 342 168, 426 96" fill="none"
+            stroke="url(#limb)" stroke-width="13" stroke-linecap="round" />
+          <path class="bow__limbHi" d="M34 96 C 118 168, 168 240, 230 252 C 292 240, 342 168, 426 96" fill="none"
+            stroke="url(#limbHi)" stroke-width="3" stroke-linecap="round" opacity=".7" />
+          <path d="M34 96 C 22 82, 26 70, 40 66" fill="none" stroke="url(#limb)" stroke-width="8"
+            stroke-linecap="round" />
+          <path d="M426 96 C 438 82, 434 70, 420 66" fill="none" stroke="url(#limb)" stroke-width="8"
+            stroke-linecap="round" />
+          <rect x="216" y="206" width="28" height="70" rx="9" fill="url(#grip)" />
+          <path d="M219 220h22 M219 236h22 M219 252h22" stroke="rgba(0,0,0,.35)" stroke-width="2" />
+          <line class="bow__str" id="strL" x1="40" y1="70" x2="230" y2="96" stroke="#9a8068" stroke-width="2.2"
+            stroke-linecap="round" />
+          <line class="bow__str" id="strR" x1="420" y1="70" x2="230" y2="96" stroke="#9a8068" stroke-width="2.2"
+            stroke-linecap="round" />
+          <circle class="bow__serving" id="serving" cx="230" cy="96" r="4.5" fill="#6f5137" />
+        </svg>
 
-          <svg class="arrow" id="arrow" viewBox="0 0 64 220" aria-hidden="true">
-            <defs>
-              <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#4a2c14" />
-                <stop offset=".5" stop-color="#8a5a2c" />
-                <stop offset="1" stop-color="#3e2410" />
-              </linearGradient>
-              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#fff0aa" />
-                <stop offset=".45" stop-color="#f59e0b" />
-                <stop offset="1" stop-color="#b45309" />
-              </linearGradient>
-              <linearGradient id="feath" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#fde047" />
-                <stop offset=".5" stop-color="#f59e0b" />
-                <stop offset="1" stop-color="#ea580c" />
-              </linearGradient>
-              <linearGradient id="wing" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ffffff" />
-                <stop offset="1" stop-color="#fff3d1" />
-              </linearGradient>
-            </defs>
+        <svg class="arrow" id="arrow" viewBox="0 0 64 220" aria-hidden="true">
+          <defs>
+            <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#4a2c14" />
+              <stop offset=".5" stop-color="#8a5a2c" />
+              <stop offset="1" stop-color="#3e2410" />
+            </linearGradient>
+            <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff0aa" />
+              <stop offset=".45" stop-color="#f59e0b" />
+              <stop offset="1" stop-color="#b45309" />
+            </linearGradient>
+            <linearGradient id="feath" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fde047" />
+              <stop offset=".5" stop-color="#f59e0b" />
+              <stop offset="1" stop-color="#ea580c" />
+            </linearGradient>
+            <linearGradient id="wing" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" />
+              <stop offset="1" stop-color="#fff3d1" />
+            </linearGradient>
+          </defs>
 
-            <rect x="29.4" y="30" width="5.2" height="168" rx="2.6" fill="url(#shaft)" />
+          <rect x="29.4" y="30" width="5.2" height="168" rx="2.6" fill="url(#shaft)" />
 
-            <g class="arrow__wings">
-              <path class="wingL" d="M31 30 C 10 16, 2 20, 4 34 C 12 30, 20 32, 31 40 Z" fill="url(#wing)" stroke="rgba(217,119,6,.72)" stroke-width="1.2"/>
-              <path class="wingR" d="M33 30 C 54 16, 62 20, 60 34 C 52 30, 44 32, 33 40 Z" fill="url(#wing)" stroke="rgba(217,119,6,.72)" stroke-width="1.2"/>
-            </g>
+          <g class="arrow__wings">
+            <path class="wingL" d="M31 30 C 10 16, 2 20, 4 34 C 12 30, 20 32, 31 40 Z" fill="url(#wing)"
+              stroke="rgba(217,119,6,.72)" stroke-width="1.2" />
+            <path class="wingR" d="M33 30 C 54 16, 62 20, 60 34 C 52 30, 44 32, 33 40 Z" fill="url(#wing)"
+              stroke="rgba(217,119,6,.72)" stroke-width="1.2" />
+          </g>
 
-            <path class="arrow__head" d="M32 12 C 30 7, 22 6.5, 21.5 13 C 21 18, 27 22, 32 27 C 37 22, 43 18, 42.5 13 C 42 6.5, 34 7, 32 12 Z" fill="url(#gold)" stroke="#b45309" stroke-width=".8" />
-            <ellipse cx="27" cy="13" rx="2.6" ry="1.7" fill="#fff" opacity=".85" style="mix-blend-mode:screen" />
+          <path class="arrow__head"
+            d="M32 12 C 30 7, 22 6.5, 21.5 13 C 21 18, 27 22, 32 27 C 37 22, 43 18, 42.5 13 C 42 6.5, 34 7, 32 12 Z"
+            fill="url(#gold)" stroke="#b45309" stroke-width=".8" />
+          <ellipse cx="27" cy="13" rx="2.6" ry="1.7" fill="#fff" opacity=".85" style="mix-blend-mode:screen" />
 
-            <g class="arrow__fletch">
-              <path d="M32 150 C 16 156, 10 178, 15 200 C 24 194, 30 184, 32 176 Z" fill="url(#feath)" />
-              <path d="M32 150 C 48 156, 54 178, 49 200 C 40 194, 34 184, 32 176 Z" fill="url(#feath)" opacity=".92" />
-              <path d="M28 160l4 3 M26 170l6 3 M25 180l7 3" stroke="rgba(180,83,9,.45)" stroke-width="1" />
-              <path d="M36 160l-4 3 M38 170l-6 3 M39 180l-7 3" stroke="rgba(180,83,9,.45)" stroke-width="1" />
-            </g>
-            <path d="M29 200 L32 205 L35 200" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
-            <circle id="tip" cx="32" cy="9" r="0.6" fill="none" />
-          </svg>
+          <g class="arrow__fletch">
+            <path d="M32 150 C 16 156, 10 178, 15 200 C 24 194, 30 184, 32 176 Z" fill="url(#feath)" />
+            <path d="M32 150 C 48 156, 54 178, 49 200 C 40 194, 34 184, 32 176 Z" fill="url(#feath)" opacity=".92" />
+            <path d="M28 160l4 3 M26 170l6 3 M25 180l7 3" stroke="rgba(180,83,9,.45)" stroke-width="1" />
+            <path d="M36 160l-4 3 M38 170l-6 3 M39 180l-7 3" stroke="rgba(180,83,9,.45)" stroke-width="1" />
+          </g>
+          <path d="M29 200 L32 205 L35 200" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+          <circle id="tip" cx="32" cy="9" r="0.6" fill="none" />
+        </svg>
       </div>
 
       <div class="hero__hint" id="hint">
@@ -195,16 +213,16 @@
       <div class="fvignette" id="fvignette"></div>
 
       <div class="camera" id="camera">
-        <p class="kEyebrow" id="kEyebrow">make a wish&hellip;</p>
+        <p class="kEyebrow" id="kEyebrow">make a wish, Mehwish&hellip;</p>
         <h2 class="headline" id="headline">
           <span class="hl__line"><span class="mask"><span class="hl__word" id="wLine1">Happy</span></span></span>
           <span class="hl__line"><span class="mask"><span class="hl__word" id="wLine2">Birthday</span></span></span>
         </h2>
         <svg class="uline" id="uline" viewBox="0 0 300 26" fill="none" aria-hidden="true">
-          <path class="uline__path" d="M8 16C56 7 132 4 178 6c30 1 78 5 114 12-40 3-108 4-176 3"
-                stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+          <path class="uline__path" d="M8 16C56 7 132 4 178 6c30 1 78 5 114 12-40 3-108 4-176 3" stroke="currentColor"
+            stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <p class="kSub" id="kSub">to an incredible friend worth celebrating</p>
+        <p class="kSub" id="kSub">to an incredible friend with true main character energy 🌟</p>
       </div>
 
       <div class="bar bar--top" id="barTop"></div>
@@ -216,15 +234,16 @@
 
     <!-- ACT 4 — THE CELEBRATORY WISH (over the blooming tree) -->
     <div class="wish" id="wish" aria-hidden="true">
-      <p class="wish__eyebrow" id="wEyebrow">and&hellip; make it count</p>
-      
+      <p class="wish__eyebrow" id="wEyebrow">to our favorite friend &bull; make it count</p>
+
       <!-- Crisp, high-contrast, pure font typography (Fraunces & Playfair) -->
       <div class="wish__heroWrap">
-        <h1 class="wish__hero" id="wHero">Happy Birthday</h1>
+        <h1 class="wish__hero" id="wHero">Happy Birthday, Mehwish!</h1>
       </div>
-      
+
       <span class="wish__rule" id="wRule"></span>
-      <p class="wish__sub" id="wSub">here&rsquo;s to a year that blooms with happiness &amp; success</p>
+      <p class="wish__sub" id="wSub">here&rsquo;s to a year filled with K-drama worthy plot twists, non-stop bops &amp;
+        massive success! ✨</p>
 
       <!-- Interactive Action Buttons: Birthday Letter & Photo Album -->
       <div class="wish__actionsWrap" id="actionsWrap">
@@ -267,26 +286,36 @@
   </main>
 
   <!-- Interactive Birthday Letter & Candle Modal Dialog -->
-  <div class="letterModal" id="letterModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="letterTitle">
+  <div class="letterModal" id="letterModal" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="letterTitle">
     <div class="letterModal__backdrop" id="letterBackdrop"></div>
     <div class="letterModal__content">
       <button class="modalCloseBtn" id="letterCloseBtn" type="button" aria-label="Close letter">&times;</button>
-      
+
       <div class="parchmentCard">
         <div class="parchmentCard__stamp" id="cardStamp">✨</div>
-        <p class="parchmentCard__date" id="letterDate">Celebrating You Today</p>
-        <h3 class="parchmentCard__title" id="letterTitle">Happy Birthday!</h3>
-        
+        <p class="parchmentCard__date" id="letterDate">Season of Mehwish &bull; Celebrating You Today</p>
+        <h3 class="parchmentCard__title" id="letterTitle">Happy Birthday, Mehwish! 🎂✨</h3>
+
         <div class="parchmentCard__body" id="letterBody">
-          Wishing you an extraordinary year filled with laughter, great adventures, and unforgettable memories! Thank you for being such an incredible friend. May every dream you chase this year turn into pure gold!
+          Happy Birthday to the ultimate friend with unmatched main character energy! 🌟
+
+          Here’s to another fantastic year filled with binge-worthy K-drama plot twists, your favorite K-pop anthems on
+          max volume, endless laughter, and absolutely zero filler episodes!
+
+          Thank you for being such an awesome, dependable, and genuine friend. Watching you chase your goals and bring
+          so much bright, fun energy to everyone around you is truly inspiring.
+
+          May this new chapter bring you blockbuster happiness, good health, great food, and wild success in everything
+          you set your mind to. Hwaiting! 🫰✨
         </div>
-        
-        <p class="parchmentCard__signoff" id="letterSignoff">Cheers to you &amp; your brightest year yet! 🥂✨</p>
+
+        <p class="parchmentCard__signoff" id="letterSignoff">From your hype squad &amp; good friend, always! 🥂🎉</p>
 
         <!-- Quick link to photo memories album -->
         <button class="letterMemoriesBtn" id="letterMemoriesBtn" type="button">
           <span class="letterMemoriesBtn__icon">📸</span>
-          <span class="letterMemoriesBtn__text">Browse All 17 Moments &amp; Memories</span>
+          <span class="letterMemoriesBtn__text">Browse All Moments &amp; Memories</span>
         </button>
 
         <!-- Interactive Candle & Birthday Cake Section -->
@@ -305,7 +334,7 @@
             <span class="blowWishBtn__icon">🎂</span>
             <span class="blowWishBtn__text" id="blowWishText">Blow Out the Candle &amp; Make a Wish!</span>
           </button>
-          
+
           <p class="wishCelebrationNote" id="wishCelebrationNote">May all your sweetest wishes come true! ✨</p>
         </div>
       </div>
@@ -313,11 +342,13 @@
   </div>
 
   <!-- Interactive Polaroid Memory Scrapbook Modal Dialog -->
-  <div class="memoriesModal" id="memoriesModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="polaroidTitle">
+  <div class="memoriesModal" id="memoriesModal" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="polaroidTitle">
     <div class="memoriesModal__backdrop" id="memoriesBackdrop"></div>
     <div class="memoriesModal__content">
-      <button class="modalCloseBtn memoriesModal__close" id="memoriesCloseBtn" type="button" aria-label="Close memories album">&times;</button>
-      
+      <button class="modalCloseBtn memoriesModal__close" id="memoriesCloseBtn" type="button"
+        aria-label="Close memories album">&times;</button>
+
       <!-- Top controls & counter bar -->
       <div class="memoriesHeader">
         <div class="memoriesHeader__badge">
@@ -332,7 +363,10 @@
       <!-- Main Polaroid Showcase Frame -->
       <div class="polaroidShowcase">
         <button class="memNavBtn memNavBtn--prev" id="memPrevBtn" type="button" aria-label="Previous photo">
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
         </button>
 
         <div class="polaroidCard" id="polaroidCard">
@@ -348,7 +382,10 @@
         </div>
 
         <button class="memNavBtn memNavBtn--next" id="memNextBtn" type="button" aria-label="Next photo">
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
         </button>
       </div>
 
@@ -367,4 +404,5 @@
 
   <script type="module" src="./birthday.js"></script>
 </body>
+
 </html>

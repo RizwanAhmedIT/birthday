@@ -1082,7 +1082,7 @@ body{
     box-shadow:0 14px 36px rgba(15, 23, 42, 0.12), 0 2px 8px rgba(255,255,255,0.8) inset;
   }
   .wish::before{ display:none; }
-  .wish__hero{ font-size:clamp(30px, 8.2vw, 46px); }
+  .wish__hero{ font-size:clamp(25px, 7.2vw, 38px); }
   .wish.is-in .wish__rule{ transition-delay:0.25s; }
   .wish.is-in .wish__sub{ transition-delay:0.4s; }
   .wish.is-in .wish__actionsWrap,
