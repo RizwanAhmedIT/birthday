@@ -361,56 +361,58 @@ function stopSlideshow() {
    Delicately floats polaroids that automatically rotate photos!
    ============================================================ */
 let floatingCycleTimer = null;
-let currentKeepsakeIndices = [0, 1, 2, 3, 4, 5, 7];
+let currentKeepsakeIndices = [0, 1, 2, 3, 4, 5, 6, 7];
 
 export function showFloatingPolaroids() {
-  const container = document.getElementById('floatingPolaroids');
-  if (!container) return;
+  try {
+    const container = document.getElementById('floatingPolaroids');
+    if (!container) return;
 
-  container.innerHTML = '';
-  container.classList.add('is-visible');
+    container.innerHTML = '';
+    container.classList.add('is-visible');
 
-  if (floatingCycleTimer) {
-    clearInterval(floatingCycleTimer);
-    floatingCycleTimer = null;
-  }
+    if (floatingCycleTimer) {
+      clearInterval(floatingCycleTimer);
+      floatingCycleTimer = null;
+    }
 
-  const slots = [
-    // Right side keepsakes
-    { classSuffix: 'r1', style: 'top: 9%; right: 4%; --rot: 5.5deg; animation-delay: 0s;' },
-    { classSuffix: 'r2', style: 'top: 22%; right: 13.5%; --rot: -4.2deg; animation-delay: -1.8s;' },
-    { classSuffix: 'r3', style: 'top: 39%; right: 3%; --rot: -6deg; animation-delay: -3.5s;' },
-    { classSuffix: 'r4', style: 'top: 51%; right: 14%; --rot: 4.5deg; animation-delay: -2.2s;' },
-    { classSuffix: 'r5', style: 'top: 72%; right: 6%; --rot: -3.2deg; animation-delay: -4.5s;' },
-    // Left side keepsakes
-    { classSuffix: 'l1', style: 'top: 11%; left: 5%; --rot: -5.2deg; animation-delay: -1.2s;' },
-    { classSuffix: 'l2', style: 'top: 25%; left: 6.5%; --rot: 4.8deg; animation-delay: -3.8s;' },
-    { classSuffix: 'l3', style: 'top: 41%; left: 4%; --rot: -4deg; animation-delay: -2.5s;' },
-  ];
+    const slots = [
+      // Right side keepsakes
+      { classSuffix: 'r1', style: 'top: 9%; right: 4%; --rot: 5.5deg; animation-delay: 0s;' },
+      { classSuffix: 'r2', style: 'top: 22%; right: 13.5%; --rot: -4.2deg; animation-delay: -1.8s;' },
+      { classSuffix: 'r3', style: 'top: 39%; right: 3%; --rot: -6deg; animation-delay: -3.5s;' },
+      { classSuffix: 'r4', style: 'top: 51%; right: 14%; --rot: 4.5deg; animation-delay: -2.2s;' },
+      { classSuffix: 'r5', style: 'top: 72%; right: 6%; --rot: -3.2deg; animation-delay: -4.5s;' },
+      // Left side keepsakes
+      { classSuffix: 'l1', style: 'top: 11%; left: 5%; --rot: -5.2deg; animation-delay: -1.2s;' },
+      { classSuffix: 'l2', style: 'top: 25%; left: 6.5%; --rot: 4.8deg; animation-delay: -3.8s;' },
+      { classSuffix: 'l3', style: 'top: 41%; left: 4%; --rot: -4deg; animation-delay: -2.5s;' },
+    ];
 
-  slots.forEach((slot, slotIdx) => {
-    const memoryIdx = currentKeepsakeIndices[slotIdx] % MEMORIES.length;
-    const item = MEMORIES[memoryIdx];
+    slots.forEach((slot, slotIdx) => {
+      const keepsakeIdx = currentKeepsakeIndices[slotIdx] !== undefined ? currentKeepsakeIndices[slotIdx] : slotIdx;
+      const memoryIdx = Math.abs(keepsakeIdx) % (MEMORIES.length || 1);
+      const item = MEMORIES[memoryIdx] || { title: 'Cherished Moment', src: '' };
 
-    const card = document.createElement('div');
-    card.className = `floatingPolaroid floatingPolaroid--${slot.classSuffix}`;
-    card.id = `fpCard_${slot.classSuffix}`;
-    card.style = slot.style;
-    card.title = `Click to view: ${item.title}`;
-    card.innerHTML = `
-      <div class="floatingPolaroid__pin">📌</div>
-      <div class="floatingPolaroid__frame">
-        <img class="floatingPolaroid__img" src="${item.src}" alt="${item.title}" />
-        <span class="floatingPolaroid__label">${item.title}</span>
-      </div>
-    `;
+      const card = document.createElement('div');
+      card.className = `floatingPolaroid floatingPolaroid--${slot.classSuffix}`;
+      card.id = `fpCard_${slot.classSuffix}`;
+      card.style = slot.style;
+      card.title = `Click to view: ${item.title}`;
+      card.innerHTML = `
+        <div class="floatingPolaroid__pin">📌</div>
+        <div class="floatingPolaroid__frame">
+          <img class="floatingPolaroid__img" src="${item.src}" alt="${item.title}" />
+          <span class="floatingPolaroid__label">${item.title}</span>
+        </div>
+      `;
 
-    card.addEventListener('click', () => {
-      openMemoriesModal(currentKeepsakeIndices[slotIdx]);
+      card.addEventListener('click', () => {
+        openMemoriesModal(currentKeepsakeIndices[slotIdx]);
+      });
+
+      container.appendChild(card);
     });
-
-    container.appendChild(card);
-  });
 
   // Dynamic Keepsakes Auto-Slideshow: smooth crossfade 1 visible polaroid every 3.8s
   let nextCycleSlot = 0;
@@ -459,6 +461,9 @@ export function showFloatingPolaroids() {
 
     nextMemoryPoolIdx++;
   }, 3800);
+  } catch (err) {
+    console.error('showFloatingPolaroids error:', err);
+  }
 }
 
 export function stopFloatingPolaroids() {

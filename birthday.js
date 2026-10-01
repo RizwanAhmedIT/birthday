@@ -194,12 +194,12 @@ function shade(hex, amt){
 
 const T = {
   trunkStart: 0.10,
-  branchSpan: 1.40,
-  bloomT0:    0.85,
-  bloomSpan:  1.50,
-  petalT0:    1.80,
-  noteStart:  1.50,
-  done:       3.60,
+  branchSpan: 1.80,
+  bloomT0:    1.25,
+  bloomSpan:  2.00,
+  petalT0:    2.45,
+  noteStart:  0.45,
+  done:       4.60,
 };
 
 const SS = 168;
@@ -557,7 +557,11 @@ function showWish(on){
   wishEl.classList.toggle('is-in', on);
   if (on && !polaroidsShown) {
     polaroidsShown = true;
-    showFloatingPolaroids();
+    try {
+      showFloatingPolaroids();
+    } catch (err) {
+      console.warn('showFloatingPolaroids error:', err);
+    }
   }
 }
 
